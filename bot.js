@@ -38,11 +38,12 @@ client.once("ready", async () => {
         }
     })
 
-    console.log(cardsToPost)
+    
+    const finalArr = cardsToPost.reverse()
 
     client.channels.cache.forEach(c => {
         if(c.guild.me.permissionsIn(c.id).has('MANAGE_WEBHOOKS') && c.guild.me.permissionsIn(c.id).has('SEND_MESSAGES')) {
-            for (let obj of cardsToPost) {
+            for (let obj of finalArr) {
                 c.send(`
 **${obj.name}**
 *${obj.type}*
