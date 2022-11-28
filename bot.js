@@ -28,6 +28,8 @@ client.once("ready", async () => {
         const lastMessage = messages.last()
         const { content } = lastMessage
 
+        console.log(data[0])
+
         for (let obj of data) {
             if (content.includes(obj.name)) {
                 break;
@@ -36,15 +38,16 @@ client.once("ready", async () => {
         }
     })
 
+    console.log(cardsToPost)
 
     client.channels.cache.forEach(c => {
         if(c.guild.me.permissionsIn(c.id).has('MANAGE_WEBHOOKS') && c.guild.me.permissionsIn(c.id).has('SEND_MESSAGES')) {
-            for (let obj of cardsToPost) {
+            for (let obj of cardsToPost.reverse()) {
                 c.send(`
 **${obj.name}**
 *${obj.type}*
 
-\`${obj.desc}\`
+\`\`\`${obj.desc}\`\`\`
                 `)
         
                 c.send(obj.img)
