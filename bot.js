@@ -42,7 +42,7 @@ client.once("ready", async () => {
 
     client.channels.cache.forEach(c => {
         if(c.guild.me.permissionsIn(c.id).has('MANAGE_WEBHOOKS') && c.guild.me.permissionsIn(c.id).has('SEND_MESSAGES')) {
-            for (let obj of cardsToPost.reverse()) {
+            for (let obj of cardsToPost) {
                 c.send(`
 **${obj.name}**
 *${obj.type}*
